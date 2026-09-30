@@ -1,15 +1,16 @@
-# Ex1: Larger of Two Integers
+# Ex2: Sum of First N Integers
 
 ## What the program does
-Loads two integers (`a = 15` and `b = 42`) from the `.data` section, compares them, and prints the larger value (`42`) to the console using a system call.
+Calculates the sum of the first N integers (where N = 10) using a counted loop, and prints the result (55).
 
 ## Register Usage
 | Register | Purpose |
 |----------|---------|
-| `t0`     | Holds the value of `a` (15) |
-| `t1`     | Holds the value of `b` (42) |
-| `a0`     | Holds the final value to be printed (the larger number) |
-| `a7`     | Holds the syscall code (1 for print integer, 10 for exit) |
+| `t0`     | Holds N (10) |
+| `t1`     | Holds the running total (sum) |
+| `t2`     | Loop counter (i) |
+| `a0`     | Holds the final sum to be printed |
+| `a7`     | Holds the syscall code (1 for print, 10 for exit) |
 
 ## What was harder than expected
-Remembering to load the **address** of the variables first using `la` before I could load the **value** using `lw`. Also, understanding that `bgt` (branch if greater than) is used to jump to the block that prints `a`, but if the branch is not taken, the code naturally falls through to print `b`.
+Translating the `for (i = 1; i <= N; i++)` loop into assembly. I had to initialize `i` to 1, use `bgt` to exit the loop when `i > N`, and remember to add the jump instruction (`j loop`) at the bottom so it repeats.

@@ -1,13 +1,13 @@
 #include <iostream>
 
 int main() {
-    int a = 15;
-    int b = 42;
+    int N = 10;
+    int sum = 0;
 
-    if (a > b) {
-        std::cout << a << std::endl;
-    } else {
-        std::cout << b << std::endl;
+    for (int i = 1; i <= N; i++) {
+        sum += i;
     }
+
+    std::cout << "Sum: " << sum << std::endl;
     return 0;
 }
