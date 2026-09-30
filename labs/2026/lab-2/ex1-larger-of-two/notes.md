@@ -1,16 +1,20 @@
-# Ex2: Sum of First N Integers
+# Ex3: Count Even Numbers in an Array
 
 ## What the program does
-Calculates the sum of the first N integers (where N = 10) using a counted loop, and prints the result (55).
+Loops through an array of 7 integers, counts how many are even, and prints the result (4).
 
 ## Register Usage
 | Register | Purpose |
 |----------|---------|
-| `t0`     | Holds N (10) |
-| `t1`     | Holds the running total (sum) |
+| `t0`     | Base address of the array |
+| `t1`     | N (array length, 7) |
 | `t2`     | Loop counter (i) |
-| `a0`     | Holds the final sum to be printed |
-| `a7`     | Holds the syscall code (1 for print, 10 for exit) |
+| `t3`     | Count of even numbers |
+| `t4`     | Calculated address of array[i] |
+| `t5`     | Value of array[i] |
+| `t6`     | Bitwise AND result (odd/even check) |
+| `a0`     | Final count to be printed |
+| `a7`     | Syscall code (1 for print, 10 for exit) |
 
 ## What was harder than expected
-Translating the `for (i = 1; i <= N; i++)` loop into assembly. I had to initialize `i` to 1, use `bgt` to exit the loop when `i > N`, and remember to add the jump instruction (`j loop`) at the bottom so it repeats.
+Using `andi` to check if a number is even. I had to remember that `andi t6, t5, 1` leaves a 1 if the number is odd and 0 if it's even. Then `bne t6, x0, skip` skips the increment for odd numbers. Also, multiplying `i` by 4 (`slli`) to get the correct byte offset for array indexing.

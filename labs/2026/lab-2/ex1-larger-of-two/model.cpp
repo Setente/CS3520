@@ -1,13 +1,16 @@
 #include <iostream>
 
 int main() {
-    int N = 10;
-    int sum = 0;
+    int array[] = {2, 5, 8, 11, 14, 17, 20};
+    int n = 7;
+    int count = 0;
 
-    for (int i = 1; i <= N; i++) {
-        sum += i;
+    for (int i = 0; i < n; i++) {
+        if (array[i] % 2 == 0) {
+            count++;
+        }
     }
 
-    std::cout << "Sum: " << sum << std::endl;
+    std::cout << "Count: " << count << std::endl;
     return 0;
 }
