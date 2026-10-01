@@ -1,16 +1,16 @@
 #include <iostream>
 
-int main() {
-    int array[] = {2, 5, 8, 11, 14, 17, 20};
-    int n = 7;
-    int count = 0;
-
-    for (int i = 0; i < n; i++) {
-        if (array[i] % 2 == 0) {
-            count++;
-        }
+int factorial(int n) {
+    int result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
     }
+    return result;
+}
 
-    std::cout << "Count: " << count << std::endl;
+int main() {
+    int N = 5;
+    int result = factorial(N);
+    std::cout << "Factorial: " << result << std::endl;
     return 0;
 }

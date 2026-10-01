@@ -1,20 +1,17 @@
-# Ex3: Count Even Numbers in an Array
+# Ex4: Factorial with a Procedure
 
 ## What the program does
-Loops through an array of 7 integers, counts how many are even, and prints the result (4).
-
+Calls a procedure `factorial` that computes N! (where N = 5), then prints the result (120).
+E
 ## Register Usage
 | Register | Purpose |
 |----------|---------|
-| `t0`     | Base address of the array |
-| `t1`     | N (array length, 7) |
-| `t2`     | Loop counter (i) |
-| `t3`     | Count of even numbers |
-| `t4`     | Calculated address of array[i] |
-| `t5`     | Value of array[i] |
-| `t6`     | Bitwise AND result (odd/even check) |
-| `a0`     | Final count to be printed |
+| `a0`     | Argument: N (in), Result: N! (out) |
+| `ra`     | Return address for the procedure call |
+| `s0`     | Result accumulator inside factorial |
+| `s1`     | Loop counter (i) inside factorial |
+| `sp`     | Stack pointer — used to save `s0` and `s1` |
 | `a7`     | Syscall code (1 for print, 10 for exit) |
 
 ## What was harder than expected
-Using `andi` to check if a number is even. I had to remember that `andi t6, t5, 1` leaves a 1 if the number is odd and 0 if it's even. Then `bne t6, x0, skip` skips the increment for odd numbers. Also, multiplying `i` by 4 (`slli`) to get the correct byte offset for array indexing.
+Understanding the calling convention — `a0` is both the input argument AND the return value. Also, having to save `s0` and `s1` on the stack because they are callee-saved registers. Since `factorial` is a **leaf procedure** (it doesn't call anything else), it does NOT need to save `ra`. 
